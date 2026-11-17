@@ -20,30 +20,40 @@ export default async function handler(req, res) {
     const responseText = await response.text();
 
     let victimCanaryAccessible = false;
+    let parsedResponse = null;
 
     try {
-      const data = JSON.parse(responseText);
+      parsedResponse = JSON.parse(responseText);
 
       victimCanaryAccessible =
-        data.owner === "ACCOUNT_A" &&
+        parsedResponse.owner === "ACCOUNT_A" &&
         (
-          Boolean(data.production_canary) ||
-          Boolean(data.preview_canary)
+          Boolean(parsedResponse.production_canary) ||
+          Boolean(parsedResponse.preview_canary)
         );
     } catch {
-      // Response bukan JSON.
+      // Respons bukan JSON.
     }
 
     return res.status(200).json({
       attacker: "ACCOUNT_B",
       victim: "ACCOUNT_A",
       test: "CROSS_TENANT_UNAUTHENTICATED",
+
       credentials_sent: false,
+
       target_status: response.status,
-      redirect_present: response.status >= 300 && response.status < 400,
+      redirect_present:
+        response.status >= 300 && response.status < 400,
       redirect_location: response.headers.get("location"),
+
       victim_canary_accessible: victimCanaryAccessible,
-      response_content_type: response.headers.get("content-type"),
+
+      response_content_type:
+        response.headers.get("content-type"),
+
+      response_body: responseText.slice(0, 1000),
+
       error: null
     });
 
@@ -52,12 +62,17 @@ export default async function handler(req, res) {
       attacker: "ACCOUNT_B",
       victim: "ACCOUNT_A",
       test: "CROSS_TENANT_UNAUTHENTICATED",
+
       credentials_sent: false,
+
       target_status: null,
       redirect_present: false,
       redirect_location: null,
+
       victim_canary_accessible: false,
       response_content_type: null,
+      response_body: null,
+
       error: error.message
     });
   }
